@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOT PICKER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Big+Shoulders:opsz,wght@10..72,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Aldrich;
+        }
+        
+        body {
+            background-color: #473F87;
+        }
+        
+        header {
+            display: flex;
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+        
+        .left {
+            width: 40%;
+            display: flex;
+            color: white;
+        }
+        
+        .right {
+            margin-left: 5%;
+            margin-right: 5%;
+            width: 50%;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        ul {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #D9D9D9;
+        }
+        
+        li {
+            list-style: none;
+            background-color: #0160fa;
+            color: white;
+            padding: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .navy:hover {
+            animation: hovery 0.4s ease-in-out 0.1s 1 forwards normal;
+        }
+        
+        @keyframes hovery {
+            from {
+                scale: 1.03;
+                transform: translateY(0px);
+            }
+            to {
+                background-color: black;
+                transform: translateY(-4px);
+                scale: 1.15;
+            }
+        }
+        
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        
+        img {
+            background-color: white;
+        }
+        
+        .heading {
+            margin-top: 20%;
+            margin-left: 10px;
+        }
+        
+        main {
+            margin-top: 50px;
+        }
+        
+        .text_area {
+            margin-left: 20px;
+            background-color: whitesmoke;
+            width: 60%;
+            height: 20vh;
+            border-radius: 30px;
+            text-align: center;
+            margin-top: 20px;
+            display: flex;
+        }
+        
+        #Input_code {
+            color: black;
+            height: 80%;
+            text-wrap-style: none;
+        }
+        
+        .text_area textarea {
+            flex: 1;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-size: 1rem;
+            resize: none;
+            padding: 0.5rem;
+            border-radius: 8px;
+            padding-left: 20px;
+        }
+        
+        .sub_button {
+            background-color: #00a2e2;
+            color: #0a0a0f;
+            border: none;
+            margin-top: 20px;
+            margin-left: 30px;
+            padding: 0 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .sub_button:hover {
+            background-color: #0086b8;
+            scale: 1.09;
+        }
+        
+        .code-box {
+            background-color: #111;
+            padding: 15px;
+            width: 50%;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 0 19px rgb(58, 75, 180);
+        }
+        
+        .second_textarea {
+            width: 100%;
+            height: 200px;
+            background-color: #000;
+            color: #ffffff;
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+        
+        textarea::placeholder {
+            font-size: 15px;
+        }
+        
+        #result1,
+        #result2 {
+            resize: none;
+        }
+        
+        legend {
+            color: white;
+            font-size: 20px;
+        }
+        
+        legend>button {
+            font-size: 20px;
+        }
+        
+        #CODE {
+            display: flex;
+        }
+        
+        .instruction {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <section class="left">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo of Website" width="35%" class="logo">
+            <h1 class="heading">BOOT PICKER</h1>
+        </section>
+        <section class="right">
+            <nav>
+                <ul>
+                    <li class="navy">
+                        <a href="Home.html">
+                            <h1>Home</h1>
+                        </a>
+                    </li>
+                    <li class="navy">
+                        <a href="Help.html">
+                            <h1>Help</h1>
+                        </a>
+                    </li>
+                    <li class="navy">
+                        <a href="About.html">
+                            <h1>About Us</h1>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+
+    <main>
+
+        <h2 class="instruction">Extract Individual Classes from Bootstrap by pasting the html code.
+        </h2>
+        <form onsubmit="Send_Code(event)" method="post">
+
+            <div class="text_area">
+
+                <textarea rows="2" name="Input_code" placeholder="       Enter the Code ....." id="Input_code"></textarea>
+            </div>
+            <button type="submit" class="sub_button">
+                <h2>
+                    Get Boot Code
+                </h2>
+            </button>
+        </form>
+    </main>
+    <div id="CODE">
+
+    </div>
+
+</body>
+<script>
+    function code_inserter(Result_Code1, Result_Code2) {
+
+        const cody = document.getElementById("CODE");
+        cody.innerHTML = cody.innerHTML + ` <div class="code-box">
+            <legend>BOOT PICKED CSS&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onclick="copy_to_user()">Copy CSS</button>
+            </legend>
+            <pre><textarea class="second_textarea" id="result1"></textarea></pre>
+        </div><div class="code-box">
+        <legend>BOOT PICKED JS&nbsp;&nbsp;&nbsp;&nbsp;
+            <button onclick="copy_to_user()">Copy JS</button>
+        </legend>
+        <pre><textarea class="second_textarea" id="result2"></textarea></pre>
+    </div>`
+        document.getElementById("result1").value = Result_Code1;
+        document.getElementById("result2").value = Result_Code2;
+    }
+
+    function Send_Code(event) {
+        event.preventDefault();
+
+
+        let Code = document.getElementById("Input_code").value;
+        fetch("/process_code", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    Input_code: Code
+                })
+            }).then(response => response.json())
+            .then((data) => {
+                code_inserter(data.extracted1, data.extracted2)
+                console.log(data)
+            }).catch(err => console.error("Error :" + err))
+    }
+
+    function copy_to_user1() {
+
+        var copyText = document.getElementById("result1");
+
+
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+
+        navigator.clipboard.writeText(copyText.value);
+    }
+
+    function copy_to_user2() {
+
+        var copyText = document.getElementById("result2");
+
+
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+
+        navigator.clipboard.writeText(copyText.value);
+
+    }
+</script>
+
+</html>
