@@ -215,7 +215,7 @@
 
         <h2 class="instruction">Extract Individual Classes from Bootstrap by pasting the html code.
         </h2>
-        <form onsubmit="Send_Code(event)" method="post">
+        <form id="form" onsubmit="Send_Code(event)" method="post">
 
             <div class="text_area">
 
@@ -237,6 +237,7 @@
     function code_inserter(Result_Code1, Result_Code2) {
 
         const cody = document.getElementById("CODE");
+        cody.innerHTML = "";
         cody.innerHTML = cody.innerHTML + ` <div class="code-box">
             <legend>BOOT PICKED CSS&nbsp;&nbsp;&nbsp;&nbsp;
                 <button onclick="copy_to_user()">Copy CSS</button>
@@ -255,7 +256,6 @@
     function Send_Code(event) {
         event.preventDefault();
 
-
         let Code = document.getElementById("Input_code").value;
         fetch("/process_code", {
                 method: "POST",
@@ -267,7 +267,7 @@
                 })
             }).then(response => response.json())
             .then((data) => {
-                code_inserter(data.extracted1, data.extracted2)
+                code_inserter(data.extracted1, "Nothing Yet Bro")
                 console.log(data)
             }).catch(err => console.error("Error :" + err))
     }
