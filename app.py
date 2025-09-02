@@ -51,4 +51,4 @@ def collect_css_code(classes):
         {cl}\n"""
     return Result
 if __name__=="__main__":
-    app.run(debug=True,port=2000)
+    app.run(debug=False,host='0.0.0.0',port=2000)
