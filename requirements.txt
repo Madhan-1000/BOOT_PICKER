@@ -1,5 +1,5 @@
 os
 flask
 json
-bs4
+beautifulsoup4
 gunicorn
